@@ -138,31 +138,21 @@ export const logoutAccount = async () => {
 
 export const createLinkToken = async (user: User) => {
   try {
-    const products = (process.env.PLAID_PRODUCTS?.split(",") as Products[]) || [
-      "auth",
-    ];
-
     const tokenParams = {
       user: {
         client_user_id: user.$id,
       },
       client_name: `${user.firstName} ${user.lastName}`,
-      products,
+      products: ["auth"] as Products[],
       language: "en",
       country_codes: ["US"] as CountryCode[],
     };
 
     const response = await plaidClient.linkTokenCreate(tokenParams);
 
-    if (response.status !== 200) {
-      console.error("Plaid Link Token Creation Error:", response.data);
-      return { error: "Failed to create Link Token" }; // Return error object
-    }
-
-    return response.data; // Return the entire response data
+    return parseStringify({ linkToken: response.data.link_token });
   } catch (error) {
-    console.error("Error in createLinkToken:", error);
-    return { error: "An unexpected error occurred" }; // Return error object
+    console.log(error);
   }
 };
 
