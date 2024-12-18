@@ -148,8 +148,8 @@ const AuthForm = ({ type }: { type: string }) => {
                     <CustomInput
                       form={form}
                       name="state"
-                      label="Region"
-                      placeholder="Example: Navoi"
+                      label="State"
+                      placeholder="Example: NY"
                     />
                     <CustomInput
                       form={form}
