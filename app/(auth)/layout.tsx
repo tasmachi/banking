@@ -10,10 +10,12 @@ export default function RootLayout({
       {children}
       <div className="auth-asset">
         <Image
-          src="/icons/auth-image.svg"
+          className="ring-4 ring-black-2 rounded-md"
+          src="/laptop.png"
           alt="auth image"
           width={500}
-          height={500}
+          style={{ objectFit: "cover" }}
+          height={600}
         />
       </div>
     </main>
